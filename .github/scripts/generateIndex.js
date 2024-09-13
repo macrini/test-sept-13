@@ -126,8 +126,8 @@ const generateIndex = (dirPath = '.', repoName = 'Unknown Repository') => {
                             // Find the previous sibling element (the span element)
                             const spanText = button.previousElementSibling.innerText;
 
-                            // Merge the span text with the current URL
-                            const textToCopy = currentUrl + '/' + spanText;
+                            // Merge the span text with the current URL, ensuring no double slashes
+                            const textToCopy = currentUrl.endsWith('/') ? currentUrl + spanText : currentUrl + '/' + spanText;
 
                             // Copy the merged text to clipboard
                             copyTextToClipboard(textToCopy);
