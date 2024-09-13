@@ -51,6 +51,9 @@ const generateIndex = (dirPath = '.', repoName = 'Unknown Repository') => {
             <h2 class="text-2xl font-semibold mt-10 mb-4">Contents</h2>
             ${generateDirectoryContent(dirPath)}
 
+            <!-- Custom alert box -->
+            <div id="customAlert" class="fixed top-5 right-5 bg-green-500 text-white p-4 rounded shadow-lg opacity-0 transition-opacity duration-300"></div>
+
             <script>
                 // Select all li elements with id "collapsible"
                 const collapsibleElements = document.querySelectorAll('li[id="collapsible"]');
@@ -80,12 +83,26 @@ const generateIndex = (dirPath = '.', repoName = 'Unknown Repository') => {
             </script>
 
             <script>
+                // Function to show the custom alert
+                function showAlert(message) {
+                    const alertBox = document.getElementById('customAlert');
+                    alertBox.innerHTML = message;
+                    alertBox.classList.add('opacity-100');
+        
+                    // Hide the alert after 3 seconds
+                    setTimeout(() => {
+                        alertBox.classList.remove('opacity-100');
+                    }, 3000);
+                }
+                
                 // Function to copy text to clipboard
                 function copyTextToClipboard(text) {
                     navigator.clipboard
                         .writeText(text)
                         .then(() => {
-                            alert('Path copied to clipboard!');
+                            // alert('Path copied to clipboard!');
+                            // Show success alert with the copied path
+                            showAlert('Path copied to clipboard!<br><strong>' + path + '</strong>');
                         })
                         .catch((err) => {
                             console.error('Failed to copy path: ', err);
