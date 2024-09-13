@@ -102,7 +102,7 @@ const generateIndex = (dirPath = '.', repoName = 'Unknown Repository') => {
                         .then(() => {
                             // alert('Path copied to clipboard!');
                             // Show success alert with the copied path
-                            showAlert('Path copied to clipboard!<br><strong>' + path + '</strong>');
+                            showAlert('Path copied to clipboard!<br><strong>' + text + '</strong>');
                         })
                         .catch((err) => {
                             console.error('Failed to copy path: ', err);
